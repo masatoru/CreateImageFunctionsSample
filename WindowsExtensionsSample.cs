@@ -1,35 +1,34 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using System.Drawing;
 
 namespace Company.Function
 {
-    public static class WindowsExtensionsSample
+    public class WindowsExtensionsSample
     {
         [FunctionName("WindowsExtensionsSample")]
-        public static async Task<IActionResult> Run(
+        public IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            return new FileContentResult(ImageToByteArray(CreateImage()), "image/jpeg");
+        }
+        Bitmap CreateImage()
+        {
+            Bitmap canvas = new(500, 200);
+            var g = Graphics.FromImage(canvas);
+            Font fnt = new("MS UI Gothic", 50);
+            g.DrawString("こんにちは .NET6", fnt, Brushes.Blue, 0, 0);
+            return canvas;
+        }
 
-            string name = req.Query["name"];
-
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
-
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
-
-            return new OkObjectResult(responseMessage);
+        byte[] ImageToByteArray(Image image)
+        {
+            ImageConverter converter = new();
+            return (byte[])converter.ConvertTo(image, typeof(byte[]));
         }
     }
 }

@@ -21,7 +21,9 @@ namespace Company.Function
             Bitmap canvas = new(500, 200);
             var g = Graphics.FromImage(canvas);
             Font fnt = new("MS UI Gothic", 50);
-            g.DrawString("こんにちは .NET6", fnt, Brushes.Blue, 0, 0);
+            g.DrawString("こんにちは .NET6", fnt, Brushes.Blue, 10, 50);
+            g.DrawRectangle(new Pen(Color.DarkOrange,10), 
+                new Rectangle(0, 0, canvas.Width, canvas.Height));
             return canvas;
         }
 

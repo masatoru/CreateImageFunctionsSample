@@ -7,4 +7,7 @@
 - Azure Functions sample project to draw graphics with ImageSharp
 - Windows / Linux
 - Linux needs to install fonts ex) ipafont
-
+## SkiaSharpSample Function
+- Azure Functions sample project to draw graphics with Skia
+- Windows / Linux
+- Linux needs to install fonts ex) ipafont

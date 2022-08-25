@@ -10,7 +10,7 @@ namespace Company.Function
 {
     public class SkiaSharpSample
     {
-        [FunctionName("SkiaSharpSample")]
+        [FunctionName("SkiaSharp")]
         public IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -20,7 +20,7 @@ namespace Company.Function
         internal static byte[] GetCaptcha()
         {
             SKPaint drawStyle = new();
-            drawStyle.TextSize = 50;
+            drawStyle.TextSize = 30;
             drawStyle.Typeface = SKTypeface.FromFamilyName("MS UI Gothic");
             // drawStyle.Typeface = SKTypeface.FromFamilyName("IPAexMincho");
             drawStyle.Color = SKColors.Blue;
@@ -34,7 +34,7 @@ namespace Company.Function
             using SKCanvas canvas = new(image2d);
 
             canvas.Clear(new SkiaSharp.SKColor(255, 255, 255, 255));
-            canvas.DrawText("こんにちは .NET6", 10, 50, drawStyle);
+            canvas.DrawText("こんにちは .NET6 SkiaSharp", 10, 50, drawStyle);
             using SKImage img = SKImage.FromBitmap(image2d);
             using SKData p = img.Encode(SKEncodedImageFormat.Jpeg, 100);
             var imageBytes = p.ToArray();

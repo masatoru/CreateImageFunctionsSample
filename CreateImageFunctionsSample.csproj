@@ -4,6 +4,8 @@
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Maui.Graphics" Version="6.0.403" />
+    <PackageReference Include="Microsoft.Maui.Graphics.Skia" Version="6.0.403" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.1.1" />
     <PackageReference Include="SixLabors.Fonts" Version="1.0.0-beta18" />
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />

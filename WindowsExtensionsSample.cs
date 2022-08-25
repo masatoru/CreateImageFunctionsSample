@@ -9,7 +9,7 @@ namespace Company.Function
 {
     public class WindowsExtensionsSample
     {
-        [FunctionName("WindowsExtensionsSample")]
+        [FunctionName("WindowsExtensions")]
         public IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -20,8 +20,8 @@ namespace Company.Function
         {
             Bitmap canvas = new(500, 200);
             var g = Graphics.FromImage(canvas);
-            Font fnt = new("MS UI Gothic", 50);
-            g.DrawString("こんにちは .NET6", fnt, Brushes.Blue, 10, 50);
+            Font fnt = new("MS UI Gothic", 30);
+            g.DrawString("こんにちは .NET6 WinodwsExtensions", fnt, Brushes.Blue, 10, 50);
             g.DrawRectangle(new Pen(Color.DarkOrange,10), 
                 new Rectangle(0, 0, canvas.Width, canvas.Height));
             return canvas;

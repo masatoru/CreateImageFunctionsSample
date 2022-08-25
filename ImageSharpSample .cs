@@ -16,7 +16,7 @@ namespace Company.Function
 {
     public class ImageSharpSample
     {
-        [FunctionName("ImageSharpSample")]
+        [FunctionName("ImageSharp")]
         public IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -26,7 +26,7 @@ namespace Company.Function
         Image CreateImage()
         {
             Image img = new Image<Rgba32>(500, 200);
-            Font fnt = SystemFonts.CreateFont("MS UI Gothic", 50);
+            Font fnt = SystemFonts.CreateFont("MS UI Gothic", 30);
             // Font fnt = SystemFonts.CreateFont("IPAexMincho", 50);
 
             TextOptions options = new(fnt)
@@ -44,7 +44,7 @@ namespace Company.Function
             IPen pen = SixLabors.ImageSharp.Drawing.Processing.Pens.Solid(Color.Blue, 1);
 
             img.Mutate(ctx => ctx
-                .DrawText(options, "こんにちは .NET6", brush, pen)
+                .DrawText(options, "こんにちは .NET6 ImageSharp", brush, pen)
                 .Draw(Color.DarkOrange, 5, path));
 
             return img;
